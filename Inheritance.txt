@@ -1,0 +1,219 @@
+								Inheritance in Java
+1. Inheriting the properties from parent class to child class.
+2. Property means the variables and methods of a class.
+3. Child can have its own property.
+4. When you inherit properties from an existing class, you can reuse methods and fields from parent class.
+5. Inheritance represents IS-A relationship which is also known as parent-child relationship.
+6. It is meant for code reusability.
+7. It is also meant for method overriding.
+8. To implement the inheritance we need to use extends keyword.then all the properties of parent class can be accessed using object of child class.
+
+Types of Inheritance:
+1. Single level
+2. Multi level
+3. Multiple inheritance
+4. Hierarchial inheritance
+5. Hybrid inheritance
+
+Java supports 3 types of inheritance(Single level, multi level and hierarchial)
+
+9. Java doesn't support inheritance
+10. Hybrid inheritance is a combination of hierarchial and multiple inheritance.As java does not support multiple inheritance, hybrid inheritance is also not supported by java.
+
+Program1:
+package inheritance;
+// parent class
+
+public class Bank
+{
+	String name;
+	int ifsc;
+	public double rate_of_interest=8.0f;
+
+	public accept(String name, int ifsc)
+	{
+		this.name=name;
+		this.ifsc=ifsc;
+	}
+
+
+	public void showDetails()
+	{
+		System.out.println(name+"   "+ifsc);
+	}
+	public double getROI()
+	{
+		return rate_of_interest;
+	}
+}
+
+package inheritance;
+
+public class ICICI extends Bank
+{
+	String address;
+	public void setAddress(String address)
+	{
+		this.address=address;
+	}
+	
+	public void show()
+	{
+		System.out.println(name+" "+ifsc+" "+rate_of_interest+" "+address);
+	}
+	public static void main(String args[])
+	{
+		ICICI i = new ICICI();
+
+		System.out.println("================== PARENT PROPERTY ==================");
+		System.out.println(i.getROI());
+		i.accept("ICICI",1234567);
+		i.showDetails();
+		
+
+		System.out.println("=================== CHILD PROPERTY=====================");
+		i.show();
+		i.setAddress("Hyderabad");
+	}
+	
+}
+		
+Program2:
+package inheritance; // separate classes
+
+public class Doctor
+{
+  public void display()
+	{
+		System.out.println("I am a doctor");
+	}
+}
+
+package inheritance;
+public class Surgeon extends Doctor
+{
+	int id;
+	String name;
+	String specialist;
+
+	void show()
+	{
+		System.out.println("I am a surgeon");
+	}
+	public static void main(String args[])
+	{
+		Surgeon s=new Surgeon();
+		s.display();
+		s.show();
+	}
+}
+
+package inheritance; // single class
+public class Doctor
+{
+  public void display()
+	{
+		System.out.println("I am a doctor");
+	}
+}
+public class Surgeon extends Doctor
+{
+	int id;
+	String name;
+	String specialist;
+
+	void show()
+	{
+		System.out.println("I am a surgeon");
+	}
+	
+}
+public class Test
+{
+public static void main(String args[])
+	{
+		Doctor d=new Doctor();
+		Surgeon s=new Surgeon();
+
+		d.display();
+		//d.show(); cannot access child class method with parent class object
+
+		s.display();
+		s.show();
+	}
+}
+
+Program3: 
+package inheritance;
+
+public class Animal
+{
+	public boolean veg;
+	public String name;
+	public int nooflegs;
+
+	public Animal()
+	{
+	}
+	public Animal(boolean veg,String name,int nooflegs)
+	{
+		this.veg=veg;
+		this.name=name;
+		this.nooflegs=nooflegs;
+	}
+	
+	public void setVeg(boolean veg)
+	{
+		this.veg=veg;
+	}
+	public void setName(String name)
+	{
+		this.name=name;
+	}
+	public void setNooflegs(int nooflegs)
+	{
+		this.nooflegs=nooflegs;
+	}
+	public String getName()
+	{
+		return name;
+	}
+	public int getNooflegs()
+	{
+		return nooflegs;
+	}
+	public boolean isVegeterian()
+	{
+		return veg;
+	}
+	
+}
+package inheritance;
+public class Cat extends Animal
+{
+	String color;
+	Cat(boolean veg,String name,int nooflegs,String color)
+	{
+		this.veg=veg;
+		this.name=name;
+		this.nooflegs=nooflegs;
+		this.color=color;
+	}
+	public String getColor()
+	{
+		return color;
+	}
+	public void setColor(String color)
+	{
+		this.color=color;
+	}
+	public static void main(String args[])
+	{
+		Cat c = new Cat(true,"cat",4,"white");
+		System.out.println("cat is vegeterian"+c.isVegeterian());
+		System.out.println("Cat has"+c.getNooflegs());
+		System.out.println("cat name is"+c.getName());
+		System.out.println("cat color is"+c.getColor());
+	}
+}
+	
